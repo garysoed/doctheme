@@ -1,0 +1,19 @@
+{
+  "name": "doctheme",
+  "version": "1.0.0",
+  "description": "Theme for YUI doc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/garysoed/doctheme.git"
+  },
+  "author": "garysoed@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/garysoed/doctheme/issues"
+  },
+  "homepage": "https://github.com/garysoed/doctheme"
+}
