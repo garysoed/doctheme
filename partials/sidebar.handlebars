@@ -6,7 +6,9 @@
     <div>
       <ul>
       {{#classes}}
-        <li><a href="{{../projectRoot}}classes/{{name}}.html">{{displayName}}</a></li>
+        <li class="{{#ifeq name ../name}}sidebar-selected{{/ifeq}}">
+          <a href="{{../projectRoot}}classes/{{name}}.html">{{displayName}}</a>
+        </li>
       {{/classes}}
       </ul>
     </div>

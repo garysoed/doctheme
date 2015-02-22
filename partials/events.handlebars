@@ -1,4 +1,49 @@
-<a name="events_{{name}}"></a>
+<section class="events">
+  <header>
+    <code class="method-signature">{{name}}</code>
+  </header>
+  <div class="content">
+    <span class="description">{{{eventDescription}}}</span>
+    {{#if params}}
+      <table>
+      {{#params}}
+        <tbody>
+          <tr>
+            <td colspan="2">
+              <p>{{#if optional}}`[{{name}}{{#if optdefault}}={{optdefault}}{{/if}}]`{{else}}`{{name}}`{{/if}}</p>
+            </td>
+            <td class="method-type">
+              <p><code>{{#crossLink type}}{{/crossLink}}</code></p>
+            </td>
+            <td class="description">
+              {{{description}}}
+            </td>
+          </tr>
+
+          {{#if props}}
+          {{#props}}
+            <tr>
+              <td></td>
+              <td>
+                <p>{{#if optional}}`[{{name}}{{#if optdefault}}={{optdefault}}{{/if}}]`{{else}}`{{name}}`{{/if}}</p>
+              </td>
+              <td class="method-type">
+                <p><code>{{#crossLink type}}{{/crossLink}}</code></p>
+              </td>
+              <td class="description">
+                {{{description}}}
+              </td>
+            </tr>
+          {{/props}}
+          {{/if}}
+        </tbody>
+      {{/params}}
+      </table>
+    {{/if}}
+  </div>
+</section>
+
+{{!-- <a name="events_{{name}}"></a>
 <div class="events item">
     `{{name}}` {{#if type}}<strong>&lt;{{#crossLink type}}{{/crossLink}}&gt;</strong>{{/if}}
     {{#if extended_from}}<em>`/* Extended from {{extended_from}} */</em>`{{/if}}
@@ -32,4 +77,4 @@
     </ul>
     {{/if}}
 </div>
-
+ --}}

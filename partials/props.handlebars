@@ -1,12 +1,22 @@
+{{#unless access}}
 <section class="props">
   <header>
-    <code class="method-signature">{{#crossLink type}}{{/crossLink}} {{name}}</code>
-    {{!-- TODO(gs): Readonly?? --}}
+    <code class="method-signature">{{#if final}}<span class="keyword">readonly</span> {{/if}}{{#crossLink type}}{{/crossLink}} {{name}}</code>
   </header>
   <div class="content">
-    {{{propertyDescription}}}
+    <span class="description">{{{propertyDescription}}}</span>
+    {{#if overwritten_from}}
+      <footer>
+        Overrides <code><a href="{{overwritten_from/class}}.html#method_{{overwritten_from/name}}">{{overwritten_from/class}}</a></code>
+      </footer>
+    {{else}}{{#if extended_from}}
+      <footer>
+        Defined in <code><a href="{{extended_from}}.html#method_{{name}}">{{extended_from}}</a></code>
+      </footer>
+    {{/if}}{{/if}}
   </div>
 </section>
+{{/unless}}
 
 {{!-- <a name="props_{{name}}"></a>
 <div class="props item">

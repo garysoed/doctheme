@@ -3,9 +3,15 @@
 <head>
   <meta charset="utf-8">
   <title>{{htmlTitle}}</title>
+
+  <link rel="stylesheet" href="{{projectAssets}}/vendor/prettify/prettify-min.css">
+
   <link rel="stylesheet" href="{{projectAssets}}/css/class.css">
+  <link rel="stylesheet" href="{{projectAssets}}/css/events.css">
+  <link rel="stylesheet" href="{{projectAssets}}/css/index.css">
   <link rel="stylesheet" href="{{projectAssets}}/css/main.css">
   <link rel="stylesheet" href="{{projectAssets}}/css/method.css">
+  <link rel="stylesheet" href="{{projectAssets}}/css/prettyprint.css">
   <link rel="stylesheet" href="{{projectAssets}}/css/props.css">
   <link rel="stylesheet" href="{{projectAssets}}/css/sidebar.css">
   <style>
@@ -19,8 +25,13 @@
       flex-direction: column;
       font-family: 'Roboto', Helvetica, Arial, sans-serif;
       font-size: smaller;
+      line-height: 3ex;
       margin: 0;
       height: 100vh;
+    }
+
+    .description code {
+      color: #F6F080;
     }
 
     h1, h2 {
@@ -34,6 +45,10 @@
 
     a:visited {
       color: {{projectColorLinkVisited}};
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
 
     pre, code {
@@ -80,6 +95,7 @@
     footer {
       border: 2px solid {{projectColorMain}};
       padding: 15px;
+      -webkit-margin-before: 20px;
     }
   </style>
   <style>
