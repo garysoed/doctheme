@@ -2,7 +2,6 @@
   <section class="class-summary">
     <header>
       <code>{{#if access}}<span class="keyword">{{access}}</span> {{/if}}{{#if static}}<span class="keyword">static</span> {{/if}}{{moduleName}}{{#if extends}} <span class="keyword">extends</span> {{#crossLink extends}}{{/crossLink}}{{/if}}</code>
-      {{!-- TODO(gs): Add subclasses --}}
     </header>
 
     <div class="content description">
@@ -10,18 +9,6 @@
     </div>
 
   </section>
-  {{#if example}}
-    <section class="collapsible class-subsection">
-      <header>
-        <h2>Examples</h2>
-      </header>
-      <div>
-        <pre class="code prettyprint">
-          {{{example}}}
-        </pre>
-      </div>
-    </section>
-  {{/if}}
 
   {{#unless access}}
   {{#if is_constructor}}
