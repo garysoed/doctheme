@@ -1,0 +1,9 @@
+{
+  "base": "",
+  "classes": {
+    "&lt;template&gt;": {
+      "name": "developer.mozilla.org/en-US/docs/Web/HTML/Element/template",
+      "file": "needed.js"
+    }
+  }
+}

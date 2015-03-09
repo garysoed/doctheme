@@ -1,18 +1,20 @@
 <div class="sidebar">
-  <section class="collapsible">
-    <header>
-      <h2>Classes</h2>
-    </header>
-    <div>
-      <ul>
-      {{#classes}}
-        <li class="{{#ifeq name ../name}}sidebar-selected{{/ifeq}}">
-          <a href="{{../projectRoot}}classes/{{name}}.html">{{displayName}}</a>
-        </li>
-      {{/classes}}
-      </ul>
-    </div>
-  </section>
+  {{#sortedModules}}
+    <section class="collapsible {{#ifeq ../module name}}selected{{/ifeq}}">
+      <header>
+        <h2>{{displayName}}</h2>
+      </header>
+      <div>
+        <ul>
+        {{#classesOf name}}
+          <li class="{{#ifeq name ../../name}}sidebar-selected{{/ifeq}}">
+            <a href="{{../../projectRoot}}classes/{{name}}.html">{{displayName}}</a>
+          </li>
+        {{/classesOf}}
+        </ul>
+      </div>
+    </section>
+  {{/sortedModules}}
 </div>
 
 {{!-- <div id="classes" class="sidebox">

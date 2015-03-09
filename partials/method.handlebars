@@ -3,6 +3,11 @@
   <header>
     <code class="method-signature">{{#if static}}<span class="keyword">static</span> {{/if}}{{name}}({{#params}}{{#if @index}}, {{/if}}{{#crossLink type}}{{/crossLink}} {{name}}{{/params}}){{#if return}} => {{#crossLink returnType}}{{/crossLink}}{{/if}}</code>
   </header>
+  {{#if since}}
+    <div class="since">
+      since {{since}}
+    </div>
+  {{/if}}
   <div class="content">
     <span class="description">{{{methodDescription}}}</span>
     <table>

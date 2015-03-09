@@ -1,0 +1,21 @@
+{
+  "base": "",
+  "classes": {
+    "Null": {
+      "name": "developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+      "file": "needed.js"
+    },
+    "Promise": {
+      "name": "developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+      "file": "needed.js"
+    },
+    "Set": {
+      "name": "developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+      "file": "needed.js"
+    },
+    "Undefined": {
+      "name": "developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+      "file": "needed.js"
+    }
+  }
+}

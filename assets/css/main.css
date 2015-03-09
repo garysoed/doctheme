@@ -10,10 +10,6 @@ header.main-header > div {
   flex: 1;
 }
 
-.main-subtitle {
-  font-size: 0.75rem;
-}
-
 section.main-sidebar {
   background-color: black;
   overflow: scroll;
