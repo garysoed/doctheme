@@ -1,6 +1,6 @@
 {{#unless access}}
 <section class="props">
-  <header>
+  <header id="property_{{name}}">
     <code class="method-signature">{{#if final}}<span class="keyword">readonly</span> {{/if}}{{#crossLink type}}{{/crossLink}} {{name}}</code>
   </header>
   <div class="content">
@@ -15,6 +15,10 @@
       </footer>
     {{/if}}{{/if}}
   </div>
+
+  {{#unless @last}}
+  <div class="divider"></div>
+  {{/unless}}
 </section>
 {{/unless}}
 

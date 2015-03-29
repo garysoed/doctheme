@@ -1,6 +1,10 @@
 {
   "base": "",
   "classes": {
+    "Map": {
+      "name": "developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+      "file": "needed.js"
+    },
     "Null": {
       "name": "developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
       "file": "needed.js"

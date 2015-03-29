@@ -5,6 +5,10 @@
       "name": "developer.mozilla.org/en-US/docs/Web/API/Attr",
       "file": "needed.js"
     },
+    "Blob": {
+      "name": "developer.mozilla.org/en-US/docs/Web/API/Blob",
+      "file": "needed.js"
+    },
     "Document": {
       "name": "developer.mozilla.org/en-US/docs/Web/API/Document",
       "file": "needed.js"

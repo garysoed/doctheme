@@ -1,6 +1,6 @@
 {{#unless access}}
 <section class="method">
-  <header>
+  <header id="method_{{name}}">
     <code class="method-signature">{{#if static}}<span class="keyword">static</span> {{/if}}{{name}}({{#params}}{{#if @index}}, {{/if}}{{#crossLink type}}{{/crossLink}} {{name}}{{/params}}){{#if return}} => {{#crossLink returnType}}{{/crossLink}}{{/if}}</code>
   </header>
   {{#if since}}
@@ -10,6 +10,7 @@
   {{/if}}
   <div class="content">
     <span class="description">{{{methodDescription}}}</span>
+    {{#if params}}
     <table>
       {{#params}}
       <tbody>
@@ -44,6 +45,7 @@
       </tbody>
       {{/params}}
     </table>
+    {{/if}}
     {{#if return}}
       {{#return}}
       <div class="method-returns">
@@ -61,6 +63,10 @@
       </footer>
     {{/if}}{{/if}}
   </div>
+
+  {{#unless @last}}
+  <div class="divider"></div>
+  {{/unless}}
 </section>
 
 {{!-- <div class="method item{{#if access}} {{access}}{{/if}}">

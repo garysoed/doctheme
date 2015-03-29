@@ -42,5 +42,9 @@ module.exports = {
       }
     });
     return rv;
+  },
+
+  html: function(tag, options) {
+    return '<' + tag + '>' + options.fn(this) + '</' + tag + '>';
   }
 }
