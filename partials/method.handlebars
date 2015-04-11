@@ -11,7 +11,9 @@
   <div class="content">
     <span class="description">{{{methodDescription}}}</span>
     {{#if params}}
-    <table>
+
+    {{!-- Render for non mobile --}}
+    <table class="method-params">
       {{#params}}
       <tbody>
         <tr>
@@ -45,6 +47,15 @@
       </tbody>
       {{/params}}
     </table>
+
+    {{!-- Render for small screens --}}
+    <dl class="method-params-small">
+      {{#params}}
+      <dt><code>{{#crossLink type}}{{/crossLink}}</code> {{#if optional}}`[{{name}}{{#if optdefault}}={{optdefault}}{{/if}}]`{{else}}`{{name}}`{{/if}}</dt>
+      <dd>{{{description}}}</dd>
+      {{/params}}
+    </dl>
+
     {{/if}}
     {{#if return}}
       {{#return}}
@@ -64,9 +75,7 @@
     {{/if}}{{/if}}
   </div>
 
-  {{#unless @last}}
   <div class="divider"></div>
-  {{/unless}}
 </section>
 
 {{!-- <div class="method item{{#if access}} {{access}}{{/if}}">

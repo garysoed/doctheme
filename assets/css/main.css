@@ -2,13 +2,46 @@ header.main-header {
   align-items: flex-end;
   display: flex;
   padding: 20px;
+  z-index: 1;
 }
 
 section.main-sidebar {
   overflow: scroll;
+  max-width: 300px;
+  z-index: 1;
 }
 
-header.main-header > div {
+.main-menu-button {
+  align-self: center;
+  display: none;
+  font-size: 200%;
+  padding: 5px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  section.main-sidebar {
+    height: 100%;
+    position: fixed;
+  }
+
+  section.main-sidebar:not(.expand) {
+    max-width: 0;
+    transition: max-width .2s;
+  }
+
+  section.main-sidebar.expand {
+    max-width: 300px;
+    transition: max-width .2s;
+  }
+
+  .main-menu-button {
+    display: block;
+  }
+}
+
+header > .main-header-section {
   flex: 1;
 }
 
@@ -16,6 +49,7 @@ section.main-content {
   display: flex;
   flex-direction: row;
   flex: 1;
+  z-index: 1;
 }
 
 section.main-main {

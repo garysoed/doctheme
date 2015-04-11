@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name=viewport content="width=device-width, initial-scale=1">
   <title>{{htmlTitle}}</title>
 
   <link rel="stylesheet" href="{{projectAssets}}/vendor/prettify/prettify-min.css">
@@ -99,7 +100,11 @@
       color: crimson;
     }
 
-    table {
+    dl {
+      padding: 15px;
+    }
+
+    table, dl {
       border: 1px solid;
     }
 
@@ -116,10 +121,10 @@
     }
     .reverse {
       background-color: {{projectColorSectionDarkest}};
-      color: {{projectColorBackground}};
+      color: {{projectColorSectionLightest}};
     }
 
-    table {
+    table, dl {
       border-color: {{projectColorSectionDarkest}};
     }
 
@@ -139,8 +144,12 @@
       color: {{projectColorSectionLightest}};
     }
 
-    header.main-header, header.main-sidebar {
+    header.main-header {
       -webkit-filter: drop-shadow(0px 2px 5px {{projectColorSectionDarkest}});
+    }
+
+    header.main-header.scroll-top {
+      -webkit-filter: none;
     }
 
     li.sidebar-selected {
@@ -179,6 +188,10 @@
       background-color: transparent;
     }
 
+    pre.prettyprint {
+      border-color: {{projectColorSectionDarkest}};
+    }
+
     header.tutorial {
       color: {{projectColorSectionDarkest}};
     }
@@ -198,11 +211,19 @@
     .method tbody:nth-child(2n+1) {
       background-color: {{projectColorBackground}};
     }
+
+    .main-bar {
+      background-color: {{projectColorSectionDarkest}};
+      color: {{projectColorForeground}};
+    }
   </style>
 </head>
 <body>
-  <header class="main-header reverse">
-    <div>
+  <section class="main-bar">
+  </section>
+  <header class="main-header reverse scroll-top">
+    <div class="main-menu-button">&#9776;</div>
+    <div class="main-header-section">
       <h1><a href="{{projectRoot}}index.html">{{projectName}}</a></h1>
       <span class="since">v {{projectVersion}}</span>
     </div>
@@ -216,7 +237,10 @@
   <script src="{{projectAssets}}/vendor/prettify/prettify-min.js"></script>
   <script>prettyPrint();</script>
   <script>
-    var els = document.querySelectorAll('section.collapsible');
+
+    var isMobile = false;
+    var rootEl = isMobile ? document.querySelector('.main-main') : document;
+    var els = rootEl.querySelectorAll('section.collapsible');
     for (var i = 0; i < els.length; i++) {
       var section = els.item(i);
       var content = section.querySelector('div');
@@ -233,5 +257,19 @@
     if (selected) {
       selected.scrollIntoView();
     }
+
+    var headerEl = document.querySelector('.main-header');
+    var mainEl = document.querySelector('.main-main');
+    mainEl.addEventListener('scroll', function() {
+      if (mainEl.scrollTop <= 0) {
+        headerEl.classList.add('scroll-top');
+      } else {
+        headerEl.classList.remove('scroll-top');
+      }
+    });
+
+    document.querySelector('.main-menu-button').addEventListener('click', function() {
+      document.querySelector('section.main-sidebar').classList.toggle('expand');
+    });
   </script>
 </html>
