@@ -1,7 +1,7 @@
 {{#unless access}}
 <section class="props">
   <header id="property_{{name}}">
-    <code class="method-signature">{{#if final}}<span class="keyword">readonly</span> {{/if}}{{#crossLink type}}{{/crossLink}} {{name}}</code>
+    <code class="method-signature">{{#if static}}<span class="keyword">static</span> {{/if}}{{#if final}}<span class="keyword">readonly</span> {{/if}}{{#crossLink type}}{{/crossLink}} {{name}}</code>
   </header>
   <div class="content">
     <span class="description">{{{propertyDescription}}}</span>
