@@ -1,5 +1,5 @@
 {{#unless access}}
-<section class="props">
+<section class="props {{#if deprecated}}deprecated{{/if}}">
   <header id="property_{{name}}">
     <code class="method-signature">{{#if static}}<span class="keyword">static</span> {{/if}}{{#if final}}<span class="keyword">readonly</span> {{/if}}{{#crossLink type}}{{/crossLink}} {{name}}</code>
   </header>
