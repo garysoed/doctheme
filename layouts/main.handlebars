@@ -92,10 +92,6 @@
       font-size: 1.8em;
     }
 
-    section.collapsible.collapsed > header {
-      padding-bottom: 5px;
-    }
-
     section.collapsible > div {
       overflow: hidden;
       transition: height .2s;
@@ -193,12 +189,18 @@
       background-color: {{projectColorPrimary}};
       color: {{projectColorBackground}};
     }
+    .reverse section.collapsible.collapsed > header {
+      color: {{projectColorLightPrimary}};
+    }
 
     section.collapsible > header:hover h2 {
       -webkit-filter: drop-shadow(0px 0px 5px {{projectColorBackground}});
     }
     .reverse section.collapsible > header:hover h2 {
       -webkit-filter: drop-shadow(0px 0px 5px {{projectColorBackground}});
+    }
+    .reverse section.collapsible.collapsed > header:hover h2 {
+      -webkit-filter: drop-shadow(0px 0px 5px {{projectColorLightPrimary}});
     }
 
     .description code {
@@ -314,5 +316,58 @@
     document.querySelector('.main-menu-button').addEventListener('click', function() {
       document.querySelector('section.main-content').classList.toggle('expand');
     });
+
+    // Override the anchors
+    var parser = new DOMParser();
+    var xhrTarget = document.querySelector('.main-main');
+
+    var sectionLinks = document.querySelectorAll('.sidebar section');
+    for (var i = 0; i < sectionLinks.length; i++) {
+      var sectionLink = sectionLinks.item(i);
+      var sidebarListItems = sectionLink.querySelectorAll('li');
+      for (var j = 0; j < sidebarListItems.length; j++) {
+        var sidebarListItem = sidebarListItems.item(j);
+        var sidebarLink = sidebarListItem.querySelector('a');
+        sidebarLink.addEventListener('click', function(section, listItem, event) {
+          // Update the history.
+          history.pushState({}, '', this.href);
+
+          // Removes any selected CSS elements
+          var selectedSection = document.querySelector('.sidebar section.collapsible.selected');
+          if (selectedSection) {
+            selectedSection.classList.toggle('selected', false);
+          }
+
+          var selectedLink = document.querySelector('.sidebar li.sidebar-selected');
+          if (selectedLink) {
+            selectedLink.classList.toggle('sidebar-selected', false);
+          }
+
+          // Selects the link
+          listItem.classList.toggle('sidebar-selected', true);
+          section.classList.toggle('selected', true);
+
+          // Grabs the page
+          var xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function() {
+            if (4 != xhr.readyState) {
+              return;
+            }
+            if (200 != xhr.status) {
+              return;
+            }
+
+            xhrTarget.innerHTML = parser
+                .parseFromString(xhr.responseText, 'text/html')
+                .querySelector('.main-main')
+                .innerHTML;
+            xhrTarget.scrollTop = 0;
+          };
+          xhr.open('GET', this.href);
+          xhr.send();
+          event.preventDefault();
+        }.bind(sidebarLink, section, sidebarListItem));
+      }
+    }
   </script>
 </html>
