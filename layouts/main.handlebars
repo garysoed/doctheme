@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="{{projectColorSectionDarkest}}">
+  <meta name="theme-color" content="{{projectColorPrimary}}">
 
   <title>{{htmlTitle}}</title>
 
@@ -89,7 +89,7 @@
     }
 
     section.collapsible > header h2 {
-      font-size: 1.2em;
+      font-size: 1.8em;
     }
 
     section.collapsible.collapsed > header {
@@ -138,72 +138,76 @@
 
   <!-- COLORS!!! -->
   <style>
+    .reverse h1 a, .reverse h1 a:visited {
+      color: {{projectColorBackground}};
+    }
+
     body {
       background-color: {{projectColorBackground}};
       color: {{projectColorForeground}};
     }
     .reverse {
-      background-color: {{projectColorSectionDarkest}};
-      color: {{projectColorSectionLightest}};
+      background-color: {{projectColorPrimary}};
+      color: {{projectColorLightPrimary}};
     }
 
     table, dl {
-      border-color: {{projectColorSectionDarkest}};
+      border-color: {{projectColorPrimary}};
     }
 
     a, a:visited,
     a.external, a.external:visited {
-      color: {{projectColorSectionDarkest}};
+      color: {{projectColorAccent}};
     }
     .reverse a, .reverse a:visited,
     .reverse a.external, .reverse a.external:visited {
-      color: {{projectColorSectionLightest}};
+      color: {{projectColorLightPrimary}};
     }
 
     .since {
-      color: {{projectColorSectionDarkest}};
+      color: {{projectColorDarkPrimary}};
     }
     .reverse .since {
-      color: {{projectColorSectionLightest}};
+      color: {{projectColorLightPrimary}};
     }
 
     header.main-header {
-      -webkit-filter: drop-shadow(0px 2px 5px {{projectColorSectionDarkest}});
+      -webkit-filter: drop-shadow(0px 2px 5px {{projectColorDarkPrimary}});
     }
     header.main-header.scroll-top {
       -webkit-filter: none;
     }
 
     li.sidebar-selected {
-      background-color: {{projectColorSectionLightest}};
+      border-right: 5px solid {{projectColorAccent}};
     }
     .reverse li.sidebar-selected a {
-      color: {{projectColorForeground}};
+      color: {{projectColorBackground}};
     }
 
     section.collapsible > header {
-      background-color: {{projectColorSectionDarkest}};
+      background-color: {{projectColorPrimary}};
       color: {{projectColorBackground}};
     }
     .reverse section.collapsible > header {
-      background-color: {{projectColorSectionNormal}};
-      color: {{projectColorForeground}};
+      background-color: {{projectColorPrimary}};
+      color: {{projectColorBackground}};
     }
 
     section.collapsible > header:hover h2 {
       -webkit-filter: drop-shadow(0px 0px 5px {{projectColorBackground}});
     }
     .reverse section.collapsible > header:hover h2 {
-      -webkit-filter: drop-shadow(0px 0px 5px {{projectColorForeground}});
+      -webkit-filter: drop-shadow(0px 0px 5px {{projectColorBackground}});
     }
 
     .description code {
-      color: {{projectColorCodeDarkest}};
-      background-color: {{projectColorCodeLightest}};
+      color: {{projectColorForeground}};
+      background-color: {{projectColorLightPrimary}};
     }
 
     code .keyword {
-      color: {{projectColorCodeDarkest}};
+      color: {{projectColorForeground}};
     }
 
     .description pre code {
@@ -211,23 +215,23 @@
     }
 
     pre.prettyprint {
-      border-color: {{projectColorSectionDarkest}};
+      border-color: {{projectColorPrimary}};
     }
 
     header.tutorial {
-      color: {{projectColorSectionDarkest}};
+      color: {{projectColorDarkPrimary}};
     }
 
     footer {
-      border: 2px solid {{projectColorSectionDarkest}};
+      border: 2px solid {{projectColorPrimary}};
     }
 
     .divider {
-      border-color: {{projectColorSectionDarkest}};
+      border-color: {{projectColorBorder}};
     }
 
     .method tbody:nth-child(2n) {
-      background-color: {{projectColorSectionLightest}};
+      background-color: {{projectColorLightPrimary}};
     }
 
     .method tbody:nth-child(2n+1) {
@@ -252,6 +256,22 @@
   <script src="{{projectAssets}}/vendor/prettify/prettify-min.js"></script>
   <script>prettyPrint();</script>
   <script>
+    // Scrolls the selected page in the tab into view, and collapse all the other headers.
+    var selected = document.querySelector('.sidebar-selected');
+    if (selected) {
+      selected.scrollIntoView();
+      var unselectedSections =
+          document.querySelectorAll('.sidebar section.collapsible:not(.selected)');
+      for (var i = 0; i < unselectedSections.length; i++) {
+        var unselectedSection = unselectedSections.item(i);
+        unselectedSection.classList.toggle('collapsed', true);
+      }
+    }
+
+    // Add the collapse / uncollapse logic.
+    function setCollapsibleHeight(contentEl, sectionEl, contentHeight) {
+      contentEl.style.height = sectionEl.classList.contains('collapsed') ? '0' : contentHeight
+    }
 
     var isMobile = false;
     var rootEl = isMobile ? document.querySelector('.main-main') : document;
@@ -261,16 +281,15 @@
       var content = section.querySelector('div');
       var header = section.querySelector('header');
       var height = content.clientHeight + 'px';
-      header.addEventListener('click', function(section, content, contentHeight) {
+
+      // Initialize the height.
+      setCollapsibleHeight(content, section, height);
+
+      header.addEventListener('click', function(section, content, contentHeight, setHeight) {
         section.classList.toggle('collapsed');
+        setCollapsibleHeight(content, section, contentHeight);
         content.style.height = section.classList.contains('collapsed') ? '0' : contentHeight;
       }.bind(header, section, content, height));
-      content.style.height = height;
-    }
-
-    var selected = document.querySelector('.sidebar-selected');
-    if (selected) {
-      selected.scrollIntoView();
     }
 
     var sinceEl = document.querySelector('.main-header-section .since');
