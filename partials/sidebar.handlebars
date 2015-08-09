@@ -2,15 +2,16 @@
   {{#sortedModules}}
     <section class="collapsible {{#ifeq ../module name}}selected{{/ifeq}}">
       <header>
-        <h2>{{displayName}}</h2>
+        <h2 class="button {{#ifeq ../module name}}primary{{/ifeq}}">{{displayName}}</h2>
       </header>
       <div>
         <ul>
-        {{#classesOf name}}
-          <li class="{{#ifeq name ../../name}}sidebar-selected{{/ifeq}}">
-            <a href="{{../../projectRoot}}classes/{{name}}.html">{{displayName}}</a>
-          </li>
-        {{/classesOf}}
+          {{#classesOf name}}
+            <li class="{{#ifeq name ../../name}}sidebar-selected{{/ifeq}}">
+              <a class="button {{#ifeq name ../../name}}primary{{/ifeq}}"
+                  href="{{../../projectRoot}}classes/{{name}}.html">{{displayName}}</a>
+            </li>
+          {{/classesOf}}
         </ul>
       </div>
     </section>

@@ -62,10 +62,6 @@
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
-
     pre,
     code,
     a.crosslink {
@@ -136,8 +132,27 @@
 
   <!-- COLORS!!! -->
   <style>
-    .reverse h1 a, .reverse h1 a:visited {
+    .button, .main-main a {
+      color: {{projectColorPrimary}};
+    }
+    .button:hover, .main-main a:hover {
+      color: {{projectColorAccent}};
+    }
+    .reverse .button {
+      color: {{projectColorLightPrimary}};
+    }
+    .reverse .button:hover {
+      color: {{projectColorAccent}};
+    }
+    .reverse .button.primary {
       color: {{projectColorBackground}};
+    }
+    .reverse .button.primary:hover {
+      color: {{projectColorAccent}};
+    }
+
+    .main-menu-button:hover {
+      color: {{projectColorAccent}};
     }
 
     body {
@@ -151,15 +166,6 @@
 
     table, dl {
       border-color: {{projectColorPrimary}};
-    }
-
-    a, a:visited,
-    a.external, a.external:visited {
-      color: {{projectColorAccent}};
-    }
-    .reverse a, .reverse a:visited,
-    .reverse a.external, .reverse a.external:visited {
-      color: {{projectColorLightPrimary}};
     }
 
     .since {
@@ -179,30 +185,9 @@
     li.sidebar-selected {
       border-right: 5px solid {{projectColorAccent}};
     }
-    .reverse li.sidebar-selected a {
-      color: {{projectColorBackground}};
-    }
 
-    section.collapsible > header {
-      background-color: {{projectColorPrimary}};
-      color: {{projectColorBackground}};
-    }
-    .reverse section.collapsible > header {
-      background-color: {{projectColorPrimary}};
-      color: {{projectColorBackground}};
-    }
     .reverse section.collapsible.collapsed > header {
       color: {{projectColorLightPrimary}};
-    }
-
-    section.collapsible > header:hover h2 {
-      -webkit-filter: drop-shadow(0px 0px 5px {{projectColorBackground}});
-    }
-    .reverse section.collapsible > header:hover h2 {
-      -webkit-filter: drop-shadow(0px 0px 5px {{projectColorBackground}});
-    }
-    .reverse section.collapsible.collapsed > header:hover h2 {
-      -webkit-filter: drop-shadow(0px 0px 5px {{projectColorLightPrimary}});
     }
 
     .description code {
@@ -245,12 +230,12 @@
 </head>
 <body>
   <header class="main-header reverse scroll-top">
-    <div class="main-menu-button">&#9776;</div>
+    <div class="main-menu-button button primary">&#9776;</div>
     <div class="main-header-section">
-      <h1><a href="{{projectRoot}}index.html">{{projectName}}</a></h1>
+      <h1><a class="button primary" href="{{projectRoot}}index.html">{{projectName}}</a></h1>
       <div class="since">v {{projectVersion}}</div>
     </div>
-    <a href="{{projectUrl}}">GitHub</a>
+    <a class="button" href="{{projectUrl}}">GitHub</a>
   </header>
   <section class="main-content">
     <section class="main-sidebar reverse">{{> sidebar}}</section>
