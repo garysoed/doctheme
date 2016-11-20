@@ -4,6 +4,7 @@ pre.prettyprint {
   padding: 2em;
   margin: 2em;
   line-height: 2.7ex;
+  overflow: scroll;
 }
 
 pre.prettyprint .com {
